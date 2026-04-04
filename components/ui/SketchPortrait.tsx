@@ -84,6 +84,8 @@ export default function SketchPortrait() {
               src="/images/sketch.png"
               alt="Sujal Movaliya - Sketch Portrait"
               fill
+              sizes="(max-width: 768px) 0px, (max-width: 1024px) 280px, 340px"
+              priority
               className="object-cover object-top filter brightness-[0.9] contrast-[1.1] transition-all duration-400 group-hover:scale-[1.03]
                          [data-theme='light']:brightness-[0.85] [data-theme='light']:contrast-[1.2]"
               style={{

@@ -70,6 +70,7 @@ export default function ProjectsGrid() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 584px"
                   loading="lazy"
                   className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out grayscale group-hover:grayscale-0"
                 />

@@ -33,6 +33,9 @@ const dmSans = DM_Sans({
    ============================================ */
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
   title: "Sujal Movaliya | Ai Engineer",
   description:
     "Ai Engineer specializing in modern web applications with React, Next.js, and TypeScript. Explore my projects, skills, and experience.",
