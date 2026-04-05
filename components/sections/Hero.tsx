@@ -233,7 +233,7 @@ export default function Hero() {
                           hover:bg-[rgba(255,255,255,0.03)] transition-all duration-300"
                 aria-label="View my Resume"
               >
-                Download CV
+                Download Resume
               </a>
             </MagneticButton>
           </motion.div>
