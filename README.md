@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+TO see my portfolio go on the below url:-
+Open [https://my-portfolio-nine-xi-43.vercel.app/) with your browser to see the result.
 ## Getting Started
 
 First, run the development server:
