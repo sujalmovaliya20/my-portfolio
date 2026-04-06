@@ -19,7 +19,7 @@ export const projects: ProjectData[] = [
       "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1600",
     tags: ["Next.js 14", "TypeScript", "Tailwind", "OpenAI", "Prisma"],
     liveUrl: "https://ai-platform-demo.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/sujalmovaliya20",
     featured: true,
   },
   {
@@ -31,7 +31,7 @@ export const projects: ProjectData[] = [
       "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=1600",
     tags: ["React", "Python", "WebSockets", "D3.js", "Redis"],
     liveUrl: "https://crypto-dashboard.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/sujalmovaliya20",
     featured: true,
   },
   {
@@ -43,7 +43,7 @@ export const projects: ProjectData[] = [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600",
     tags: ["React Native", "Firebase", "Redux", "Stripe"],
     liveUrl: "https://ecommerce-mobile.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/sujalmovaliya20",
     featured: false,
   },
   {
@@ -55,7 +55,7 @@ export const projects: ProjectData[] = [
       "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=1600",
     tags: ["TypeScript", "Socket.io", "Canvas API", "Node.js"],
     liveUrl: "https://whiteboard-demo.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/sujalmovaliya20",
     featured: false,
   },
 ];
