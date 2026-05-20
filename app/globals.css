@@ -24,9 +24,9 @@
   --radius-lg: 20px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Font variables — set by next/font in layout.tsx */
-  --font-syne: "Syne", sans-serif;
-  --font-dm-sans: "DM Sans", sans-serif;
+  /* Font variables — loaded dynamically via next/font */
+  --font-syne: var(--font-outfit), system-ui, sans-serif;
+  --font-dm-sans: var(--font-jakarta), system-ui, sans-serif;
 }
 
 /* ============================================

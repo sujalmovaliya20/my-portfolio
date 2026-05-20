@@ -5,6 +5,12 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { ArrowDown } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import SketchPortrait from "@/components/ui/SketchPortrait";
+import dynamic from "next/dynamic";
+
+const HeroBackground3D = dynamic(
+  () => import("@/components/ui/HeroBackground3D"),
+  { ssr: false }
+);
 
 /** ============================================
  *  COUNTER COMPONENT
@@ -94,31 +100,28 @@ export default function Hero() {
     >
       {/* 
        * ============================================
-       * 1. BACKGROUND EFFECTS (with Parallax)
+       * 1. BACKGROUND EFFECTS — THREE.JS 3D CANVAS
        * ============================================ 
        */}
 
-      {/* CSS Grid Pattern with Radial Mask */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none -z-10"
+      {/* Full-viewport Three.js 3D WebGL background */}
+      <HeroBackground3D />
+
+      {/* Radial vignette overlay to blend 3D into page */}
+      <div
+        className="absolute inset-0 pointer-events-none -z-[9]"
         style={{
-          y: gridY,
-          backgroundImage: `
-            linear-gradient(var(--border) 1px, transparent 1px),
-            linear-gradient(90deg, var(--border) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 40%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 40%, black, transparent)"
+          background:
+            "radial-gradient(ellipse 120% 100% at 50% 0%, transparent 30%, rgba(10,10,10,0.6) 70%, #0a0a0a 100%)",
         }}
       />
 
-      {/* Accent Glow */}
+      {/* Top-left accent bloom (layered on top of 3D) */}
       <motion.div
-        className="absolute w-[600px] h-[600px] -top-[100px] -left-[200px] pointer-events-none -z-10 opacity-40"
+        className="absolute w-[700px] h-[700px] -top-[200px] -left-[300px] pointer-events-none -z-[8] opacity-30"
         style={{
           y: glowY,
-          background: "radial-gradient(circle, rgba(212,245,122,0.08) 0%, transparent 70%)"
+          background: "radial-gradient(circle, rgba(212,245,122,0.15) 0%, transparent 65%)",
         }}
       />
 
@@ -169,8 +172,11 @@ export default function Hero() {
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="text-transparent"
-                style={{ WebkitTextStroke: "1.5px rgba(214, 255, 6, 0.89)" }}
+                className="text-gradient font-extrabold"
+                style={{ 
+                  textShadow: "0 0 30px rgba(var(--accent-rgb), 0.2)",
+                  filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.6))"
+                }}
               >
                 MOVALIYA
               </motion.span>
@@ -260,8 +266,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column: Sketch Portrait (Hidden on Mobile) */}
-        <SketchPortrait />
+        {/* Right Column Spacer: Reserves space for the 3D holographic sketch core floating in the WebGL scene */}
+        <div className="hidden md:block w-[280px] h-[340px] lg:w-[340px] lg:h-[420px] pointer-events-none" />
       </motion.div>
 
       {/* 

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Syne, DM_Sans } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { PageWrapper } from "@/components/ui/PageWrapper";
 import Navbar from "@/components/layout/Navbar";
@@ -13,18 +13,17 @@ import "./globals.css";
    automatic self-hosting & zero layout shift
    ============================================ */
 
-const syne = Syne({
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
-  variable: "--font-syne",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-outfit",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-dm-sans",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -104,7 +103,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${syne.variable} ${dmSans.variable}`}
+      className={`${outfit.variable} ${plusJakartaSans.variable}`}
     >
       <body className="antialiased overflow-x-hidden">
         <LoadingScreen />
