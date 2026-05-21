@@ -21,14 +21,14 @@ export default function ResumePage() {
        */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 print:hidden">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-black transition-colors"
           >
             <FiArrowLeft size={16} />
             Back to Portfolio
           </Link>
-          
+
           <button
             onClick={handlePrint}
             className="flex items-center gap-2 px-4 py-1.5 bg-black text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition-all shadow-sm"
@@ -43,13 +43,13 @@ export default function ResumePage() {
        * Resume Container 
        */}
       <main className="max-w-4xl mx-auto px-8 md:px-16 py-12 md:py-20">
-        
+
         {/* 1. Header Section */}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-serif">
             Sujal Movaliya
           </h1>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 text-sm text-gray-600">
             <a href="tel:+918511847785" className="flex items-center gap-2 hover:text-black">
               <FiPhone size={14} className="text-gray-400" />
@@ -90,7 +90,7 @@ export default function ResumePage() {
               </p>
               <p className="text-sm font-semibold mt-1">CGPA: 8.83/10</p>
             </div>
-            
+
             <div>
               <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-1">
                 <h3 className="text-lg font-bold">Ashadeep iit, Surat (HSC)</h3>

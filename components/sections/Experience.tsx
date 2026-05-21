@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { experience } from "@/data/experience";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { Sparkles, Terminal, Activity, CheckCircle2, Server, Cpu, Database } from "lucide-react";
+import { Sparkles, Terminal, Activity, CheckCircle2, Server, Cpu, Database, GitBranch } from "lucide-react";
 
 export default function Experience() {
   const exp = experience[0]; 
@@ -12,17 +12,19 @@ export default function Experience() {
   const getCategoryIcon = (category: string) => {
     switch (category.toLowerCase()) {
       case "core":
-        return <Terminal className="w-3.5 h-3.5 text-[var(--accent)]" />;
+        return <Terminal className="w-5 h-5 text-[var(--accent)]" />;
       case "ml":
-        return <Cpu className="w-3.5 h-3.5 text-cyan-400" />;
+        return <Cpu className="w-5 h-5 text-cyan-400" />;
       case "llm":
-        return <Sparkles className="w-3.5 h-3.5 text-purple-400" />;
+        return <Sparkles className="w-5 h-5 text-purple-400" />;
       case "backend":
-        return <Server className="w-3.5 h-3.5 text-blue-400" />;
+        return <Server className="w-5 h-5 text-blue-400" />;
       case "data":
-        return <Database className="w-3.5 h-3.5 text-emerald-400" />;
+        return <Database className="w-5 h-5 text-emerald-400" />;
+      case "devops":
+        return <GitBranch className="w-5 h-5 text-orange-400" />;
       default:
-        return <Activity className="w-3.5 h-3.5 text-gray-400" />;
+        return <Activity className="w-5 h-5 text-gray-400" />;
     }
   };
 
@@ -38,8 +40,29 @@ export default function Experience() {
         return "border-[rgba(96,165,250,0.15)] bg-[rgba(96,165,250,0.03)] text-blue-400 hover:border-[rgba(96,165,250,0.4)]";
       case "data":
         return "border-[rgba(52,211,153,0.15)] bg-[rgba(52,211,153,0.03)] text-emerald-400 hover:border-[rgba(52,211,153,0.4)]";
+      case "devops":
+        return "border-[rgba(249,115,22,0.15)] bg-[rgba(249,115,22,0.03)] text-orange-400 hover:border-[rgba(249,115,22,0.4)]";
       default:
-        return "border-[var(--border)] bg-[var(--bg3)] text-[var(--fg3)]";
+        return "border-[var(--border)] bg-[var(--bg3)] text-[var(--fg2)] hover:border-[var(--border2)]";
+    }
+  };
+
+  const getCategoryTextColorClass = (category: string) => {
+    switch (category.toLowerCase()) {
+      case "core":
+        return "text-[var(--accent)]/90";
+      case "ml":
+        return "text-cyan-400/90";
+      case "llm":
+        return "text-purple-400/90";
+      case "backend":
+        return "text-blue-400/90";
+      case "data":
+        return "text-emerald-400/90";
+      case "devops":
+        return "text-orange-400/90";
+      default:
+        return "text-[var(--fg2)]";
     }
   };
 
@@ -91,17 +114,17 @@ export default function Experience() {
                 <div>
                   {/* Period & Active Indicator */}
                   <div className="flex items-center justify-between mb-10">
-                    <span className="px-4.5 py-2 bg-[var(--bg3)]/80 border border-[var(--border)] rounded-full text-[12px] font-semibold text-[var(--accent)] tracking-[0.05em]">
+                    <span className="px-5 py-2.5 bg-[var(--bg3)]/80 border border-[var(--border)] rounded-full text-[14px] font-semibold text-[var(--accent)] tracking-[0.05em]">
                       {exp.period}
                     </span>
                     
                     {exp.current && (
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2.5 w-2.5">
+                      <div className="flex items-center gap-2.5">
+                        <span className="relative flex h-3 w-3">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--accent)]"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--accent)]"></span>
                         </span>
-                        <span className="text-[11px] font-bold text-[var(--accent)] uppercase tracking-[0.1em]">
+                        <span className="text-[13px] font-bold text-[var(--accent)] uppercase tracking-[0.1em]">
                           Active Role
                         </span>
                       </div>
@@ -110,25 +133,25 @@ export default function Experience() {
 
                   {/* Company & Role */}
                   <div className="mb-8">
-                    <h3 className="text-[30px] md:text-[36px] font-extrabold font-syne text-[var(--fg)] leading-[1.1] tracking-tight mb-3">
+                    <h3 className="text-[34px] md:text-[42px] font-extrabold font-syne text-[var(--fg)] leading-[1.1] tracking-tight mb-3.5">
                       {exp.role}
                     </h3>
-                    <div className="text-[16px] text-[var(--fg2)] font-semibold font-dm-sans flex items-center gap-2.5">
+                    <div className="text-[18px] text-[var(--fg2)] font-semibold font-dm-sans flex items-center gap-3">
                       <span>{exp.company}</span>
                       <span className="text-[var(--border)]">•</span>
-                      <span className="text-[var(--accent)] text-[13px] uppercase tracking-wider">{exp.type}</span>
+                      <span className="text-[var(--accent)] text-[14px] uppercase tracking-wider font-bold">{exp.type}</span>
                     </div>
                   </div>
 
                   {/* Deep Description */}
-                  <p className="text-[14px] md:text-[15px] text-[var(--fg3)] font-dm-sans leading-[1.8] mb-8">
+                  <p className="text-[16px] md:text-[17px] text-[var(--fg3)] font-dm-sans leading-[1.8] mb-8">
                     {exp.description}
                   </p>
                 </div>
 
                 {/* Decorative Tech HUD Footer */}
-                <div className="border-t border-[var(--border)] pt-6 mt-6 flex items-center justify-between text-[10px] text-[var(--fg3)] uppercase tracking-widest font-mono">
-                  <span>Loc: Remote / Hybrid</span>
+                <div className="border-t border-[var(--border)] pt-6 mt-6 flex items-center justify-between text-[12px] text-[var(--fg3)] uppercase tracking-widest font-mono">
+                  <span>Loc: Onsite</span>
                   <span>ID: CODLENS-2026-AI</span>
                 </div>
               </div>
@@ -139,8 +162,8 @@ export default function Experience() {
               
               {/* Box 1: Key Impact Highlights */}
               <div className="bg-[var(--bg2)]/40 backdrop-blur-md border border-[var(--border)] rounded-[28px] p-8 md:p-10 relative overflow-hidden flex-1 hover:border-[var(--accent)]/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3),0_0_40px_rgba(212,245,122,0.02)] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                <h4 className="text-[18px] md:text-[20px] font-bold font-syne text-[var(--fg)] mb-6 flex items-center gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-[var(--accent)]" />
+                <h4 className="text-[22px] md:text-[24px] font-bold font-syne text-[var(--fg)] mb-6 flex items-center gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-[var(--accent)]" />
                   Key Impact & Contributions
                 </h4>
                 
@@ -152,9 +175,9 @@ export default function Experience() {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.1, duration: 0.6, ease: "easeOut" }}
                       viewport={{ once: true }}
-                      className="flex items-start gap-4 text-[14px] md:text-[15px] text-[var(--fg2)] font-dm-sans leading-[1.7]"
+                      className="flex items-start gap-4 text-[16px] md:text-[17px] text-[var(--fg2)] font-dm-sans leading-[1.7]"
                     >
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0 shadow-[0_0_8px_var(--accent)]" />
+                      <span className="mt-2.5 w-2 h-2 rounded-full bg-[var(--accent)] flex-shrink-0 shadow-[0_0_8px_var(--accent)]" />
                       <span>{highlight}</span>
                     </motion.li>
                   ))}
@@ -163,26 +186,26 @@ export default function Experience() {
 
               {/* Box 2: Categorized AI / ML Engine Stack */}
               <div className="bg-[var(--bg2)]/40 backdrop-blur-md border border-[var(--border)] rounded-[28px] p-8 md:p-10 relative overflow-hidden hover:border-[var(--accent)]/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3),0_0_40px_rgba(212,245,122,0.02)] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                <h4 className="text-[18px] md:text-[20px] font-bold font-syne text-[var(--fg)] mb-6 flex items-center gap-2.5">
-                  <Cpu className="w-5 h-5 text-[var(--accent)]" />
+                <h4 className="text-[22px] md:text-[24px] font-bold font-syne text-[var(--fg)] mb-6 flex items-center gap-3">
+                  <Cpu className="w-6 h-6 text-[var(--accent)]" />
                   AI & Engineering Stack
                 </h4>
                 
                 <div className="space-y-6">
                   {Object.entries(groupedSkills).map(([category, labels], catIdx) => (
-                    <div key={category} className="flex flex-col md:flex-row md:items-center gap-3">
+                    <div key={category} className="flex flex-col md:flex-row md:items-center gap-4">
                       {/* Category Title / Pill */}
-                      <div className="md:w-[130px] flex-shrink-0 flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[var(--fg3)]">
+                      <div className={`md:w-[160px] flex-shrink-0 flex items-center gap-3 font-mono text-[14px] font-extrabold uppercase tracking-[0.1em] ${getCategoryTextColorClass(category)}`}>
                         {getCategoryIcon(category)}
                         <span>{category}</span>
                       </div>
                       
                       {/* Badges */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2.5">
                         {labels.map((label, labelIdx) => (
                           <span 
                             key={labelIdx}
-                            className={`px-3 py-1.5 border rounded-full text-[12px] font-medium tracking-[0.02em] transition-all duration-300 hover:-translate-y-1 ${getCategoryColorClass(category)}`}
+                            className={`px-4 py-2 border rounded-full text-[14px] font-medium tracking-[0.02em] transition-all duration-300 hover:-translate-y-1 ${getCategoryColorClass(category)}`}
                           >
                             {label}
                           </span>

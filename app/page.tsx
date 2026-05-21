@@ -7,7 +7,6 @@ import SkillsMarquee from "@/components/ui/SkillsMarquee";
 import About from "@/components/sections/About";
 import ProjectsGrid from "@/components/sections/ProjectsGrid";
 import Experience from "@/components/sections/Experience";
-import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
@@ -28,9 +27,6 @@ export default function Home() {
 
       {/* 4. EXPERIENCE SECTION */}
       <Experience />
-
-      {/* 5. TESTIMONIALS SECTION */}
-      <Testimonials />
 
       {/* 6. CONTACT SECTION */}
       <Contact />

@@ -38,8 +38,8 @@ export default function About() {
   ];
 
   const skills = [
-    { name: "React / Next.js", percentage: 95 },
-    { name: "Python / AI & ML", percentage: 92 },
+    { name: "Python / AI & ML", percentage: 95 },
+    { name: "React / Next.js", percentage: 92 },
     { name: "TypeScript / JavaScript", percentage: 90 },
     { name: "Node.js / Express", percentage: 88 },
     { name: "MongoDB / Supabase", percentage: 85 },
@@ -48,25 +48,25 @@ export default function About() {
 
   const microStats = [
     { value: "Top 5", label: "Hackathon Finalist" },
-    { value: "60+", label: "3D Experiments Built" },
-    { value: "8.83", label: "B.Tech CGPA" },
+    { value: "Lead", label: "Team Leadership" },
+    { value: "Collab", label: "Team Collaboration" },
     { value: "AI + Web", label: "Core Specialization" }
   ];
 
   return (
-    <section 
-      id="about" 
+    <section
+      id="about"
       className="relative bg-[var(--bg)] py-[100px] overflow-hidden"
     >
       <div className="max-w-[1200px] mx-auto px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-          
+
           {/* Card Side */}
           <ScrollReveal direction="right" className="order-first lg:order-last w-full">
             <div className="space-y-10">
               {/* Skill Proficiency Card */}
               <div className="relative bg-[var(--bg2)] border border-[var(--border)] rounded-[20px] p-8 overflow-hidden shadow-2xl">
-                <div 
+                <div
                   className="absolute top-0 left-5 right-5 h-[2px]"
                   style={{ background: "linear-gradient(90deg, transparent, var(--accent), transparent)" }}
                 />
@@ -75,10 +75,10 @@ export default function About() {
                 </h3>
                 <div className="space-y-4">
                   {skills.map((skill, idx) => (
-                    <SkillBar 
-                      key={idx} 
-                      name={skill.name} 
-                      percentage={skill.percentage} 
+                    <SkillBar
+                      key={idx}
+                      name={skill.name}
+                      percentage={skill.percentage}
                       delay={0.2 + (idx * 0.1)}
                     />
                   ))}
@@ -88,14 +88,14 @@ export default function About() {
               {/* Micro Stats Grid */}
               <div className="grid grid-cols-2 gap-4">
                 {microStats.map((stat, idx) => (
-                  <div 
-                    key={idx} 
-                    className="bg-[var(--bg3)] border border-[var(--border)] rounded-[12px] p-4 text-center group hover:border-[rgba(212,245,122,0.2)] transition-colors duration-300"
+                  <div
+                    key={idx}
+                    className="flex flex-col justify-center items-center min-h-[120px] bg-[var(--bg3)]/50 backdrop-blur-sm border border-[var(--border)] rounded-[16px] p-4 text-center group hover:border-[var(--accent)]/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2),0_0_20px_rgba(212,245,122,0.01)] transition-all duration-300 hover:-translate-y-1"
                   >
-                    <div className="text-[18px] font-bold font-syne text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors">
+                    <div className="text-[20px] font-extrabold font-syne text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors duration-300">
                       {stat.value}
                     </div>
-                    <div className="text-[11px] font-medium font-dm-sans text-[var(--fg3)] uppercase tracking-[0.05em] mt-1">
+                    <div className="text-[10px] md:text-[11px] font-bold font-mono text-[var(--fg3)] uppercase tracking-[0.08em] mt-2 leading-tight max-w-[95%]">
                       {stat.label}
                     </div>
                   </div>
@@ -132,7 +132,7 @@ export default function About() {
             <ScrollReveal direction="up" delay={0.4}>
               <div className="flex flex-wrap gap-2.5 mb-10">
                 {personalityTags.map((tag, idx) => (
-                  <div 
+                  <div
                     key={idx}
                     className="px-4 py-1.5 bg-[var(--bg3)] border border-[var(--border)] rounded-full 
                                text-[12px] font-medium text-[var(--fg2)] transition-all duration-300
@@ -143,7 +143,7 @@ export default function About() {
                 ))}
               </div>
 
-              <a 
+              <a
                 href="/resume.pdf"
                 target="_blank"
                 className="inline-flex items-center gap-2 text-[var(--accent)] font-bold text-[14px] group"
