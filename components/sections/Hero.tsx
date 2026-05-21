@@ -12,55 +12,7 @@ const HeroBackground3D = dynamic(
   { ssr: false }
 );
 
-/** ============================================
- *  COUNTER COMPONENT
- *  ============================================ */
-function Counter({ value, suffix }: { value: string; suffix: string }) {
-  const [displayValue, setDisplayValue] = useState(0);
-  const targetValue = parseInt(value) || 0;
-  const ref = useRef(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          const duration = 2000;
-          const startTime = performance.now();
-
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeOutQuad = (t: number) => t * (2 - t);
-            const currentCount = Math.floor(easeOutQuad(progress) * targetValue);
-
-            setDisplayValue(currentCount);
-
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            } else {
-              setDisplayValue(targetValue);
-            }
-          };
-
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [targetValue, hasAnimated]);
-
-  return (
-    <span ref={ref}>
-      {displayValue === 0 && value === "∞" ? "∞" : displayValue}
-      <span className="text-[var(--accent)] ml-0.5">{suffix}</span>
-    </span>
-  );
-}
 
 /** ============================================
  *  HERO SECTION COMPONENT
@@ -244,26 +196,7 @@ export default function Hero() {
             </MagneticButton>
           </motion.div>
 
-          {/* E. STATS ROW */}
-          <div className="border-t border-[var(--border)] pt-10">
-            <div className="grid grid-cols-2 lg:flex lg:gap-16 gap-y-10 group">
-              {[
-                { number: "5", suffix: "+", label: "Years experience" },
-                { number: "40", suffix: "+", label: "Projects delivered" },
-                { number: "20", suffix: "+", label: "Happy clients" },
-                { number: "∞", suffix: "", label: "Lines of code" }
-              ].map((stat, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <div className="flex items-baseline font-syne font-extrabold text-[38px] md:text-[44px] text-[var(--fg)] leading-none">
-                    <Counter value={stat.number} suffix={stat.suffix} />
-                  </div>
-                  <span className="text-[12px] text-[var(--fg3)] uppercase tracking-[0.07em] mt-1.5 font-medium">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+
         </div>
 
         {/* Right Column Spacer: Reserves space for the 3D holographic sketch core floating in the WebGL scene */}

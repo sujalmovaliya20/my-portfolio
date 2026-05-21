@@ -33,24 +33,24 @@ function SkillBar({ name, percentage, delay = 0 }: { name: string; percentage: n
  *  ============================================ */
 export default function About() {
   const personalityTags = [
-    "Problem Solver", "UI/UX Enthusiast", "Open Source Contributor",
-    "Performance Obsessed", "Clean Code Advocate", "Team Player"
+    "AI Developer", "3D Graphics Enthusiast", "Hackathon Finalist",
+    "Problem Solver", "Clean Code Advocate", "Team Player"
   ];
 
   const skills = [
     { name: "React / Next.js", percentage: 95 },
-    { name: "Node.js / Express", percentage: 90 },
-    { name: "TypeScript", percentage: 88 },
-    { name: "MongoDB / PostgreSQL", percentage: 85 },
-    { name: "AWS / DevOps", percentage: 75 },
-    { name: "UI/UX & Figma", percentage: 80 }
+    { name: "Python / AI & ML", percentage: 92 },
+    { name: "TypeScript / JavaScript", percentage: 90 },
+    { name: "Node.js / Express", percentage: 88 },
+    { name: "MongoDB / Supabase", percentage: 85 },
+    { name: "Three.js / WebGL", percentage: 80 }
   ];
 
   const microStats = [
-    { value: "3+ yrs", label: "MERN Stack" },
-    { value: "40+", label: "Projects Built" },
-    { value: "99%", label: "Client Satisfaction" },
-    { value: "Top 5%", label: "GitHub Activity" }
+    { value: "Top 5", label: "Hackathon Finalist" },
+    { value: "60+", label: "3D Experiments Built" },
+    { value: "8.83", label: "B.Tech CGPA" },
+    { value: "AI + Web", label: "Core Specialization" }
   ];
 
   return (
@@ -121,10 +121,10 @@ export default function About() {
             <ScrollReveal direction="up" delay={0.2}>
               <div className="space-y-5 mb-8">
                 <p className="text-[15px] text-[var(--fg2)] leading-[1.8] font-dm-sans">
-                  I&apos;m an Ai Engineer with 3+ years of experience building high-performance web applications. I specialize in the MERN stack and Next.js, creating products that scale beautifully and delight users.
+                  I&apos;m a B.Tech Computer Engineering student and AI Engineer specializing in building intelligent, high-performance web solutions. My expertise spans across frontend technologies like React, Next.js, and Three.js, and backends powered by Node.js, Express, and Python FastAPI.
                 </p>
                 <p className="text-[15px] text-[var(--fg2)] leading-[1.8] font-dm-sans">
-                  When I&apos;m not shipping code, I&apos;m exploring new design patterns, contributing to open-source, or mentoring junior developers. I believe great software is equal parts engineering and empathy.
+                  I have a strong passion for Artificial Intelligence and Machine Learning, integrating Generative AI, Image-to-Image models, and the Model Context Protocol (MCP) into web applications. Whether engineering immersive 3D science simulations or building crop-analysis tools for hackathons, I love translating complex algorithms into seamless user interfaces.
                 </p>
               </div>
             </ScrollReveal>

@@ -136,13 +136,13 @@ export default function ResumePage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold">College Feedback System</h3>
+              <h3 className="text-lg font-bold">SciViz 3D — Interactive Science Visualization Platform</h3>
               <p className="text-xs font-medium text-gray-500 mb-2 italic">
-                Native Android, Java, XML, SQLite
+                React.js, Three.js, Node.js, MongoDB, Python FastAPI, MediaPipe, Claude AI
               </p>
               <ul className="list-disc list-outside ml-4 space-y-2 text-sm text-gray-700">
-                <li>Designed a native Android application for streamlined institutional student feedback collection.</li>
-                <li>Implemented a robust local database architecture for secure, offline data management.</li>
+                <li>Engineered a full-stack 3D science education platform with 60+ interactive experiments mapped to Class 10 & 12 NCERT/CBSE curriculum covering Physics, Chemistry, and Biology.</li>
+                <li>Built immersive Simulation World with real-time hand gesture control using MediaPipe for students to physically grab, rotate, and inspect 3D science objects via webcam.</li>
               </ul>
             </div>
           </div>
