@@ -35,11 +35,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ),
-  title: "Sujal Movaliya | Ai Engineer",
+  title: "Sujal Movaliya | AI Engineer",
   description:
-    "Ai Engineer specializing in modern web applications with React, Next.js, and TypeScript. Explore my projects, skills, and experience.",
+    "AI Engineer specializing in modern web applications with React, Next.js, and TypeScript. Explore my projects, skills, and experience.",
   keywords: [
-    "Ai Engineer",
+    "AI Engineer",
     "portfolio",
     "react",
     "next.js",
@@ -55,24 +55,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-    title: "Sujal Movaliya | Ai Engineer",
+    title: "Sujal Movaliya | AI Engineer",
     description:
-      "Ai Engineer specializing in modern web applications with React, Next.js, and TypeScript.",
+      "AI Engineer specializing in modern web applications with React, Next.js, and TypeScript.",
     siteName: "Sujal Movaliya — Portfolio",
     images: [
       {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Sujal Movaliya — Ai Engineer Portfolio",
+        alt: "Sujal Movaliya — AI Engineer Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sujal Movaliya | Ai Engineer",
+    title: "Sujal Movaliya | AI Engineer",
     description:
-      "Ai Engineer specializing in modern web applications.",
+      "AI Engineer specializing in modern web applications.",
     images: ["/images/og-image.png"],
   },
   robots: {

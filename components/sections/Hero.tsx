@@ -142,7 +142,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-[17px] md:text-[20px] text-[var(--fg2)] max-w-[580px] font-dm-sans mb-10"
           >
-            I&apos;m a Ai Engineer{" "}
+            I&apos;m an AI Engineer{" "}
             <span className="block mt-1 sm:inline sm:mt-0 font-medium text-[var(--accent)] h-[24px]">
               <AnimatePresence mode="wait">
                 <motion.span
@@ -184,7 +184,7 @@ export default function Hero() {
             </MagneticButton>
             <MagneticButton>
               <a
-                href="/resume"
+                href="/resume.pdf"
                 target="_blank"
                 className="px-7 py-3.5 border border-[var(--border2)] text-[var(--fg)] rounded-full
                           font-syne font-semibold text-sm hover:border-[rgba(255,255,255,0.4)]

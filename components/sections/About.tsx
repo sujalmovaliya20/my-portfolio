@@ -1,56 +1,86 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Brain, Code2, Database, Terminal, Briefcase, Trophy, GraduationCap, ShieldAlert, Sparkles } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
-/** ============================================
- *  SKILL BAR COMPONENT (Animates Fill on Scroll)
- *  ============================================ */
-function SkillBar({ name, percentage, delay = 0 }: { name: string; percentage: number; delay?: number }) {
-  return (
-    <div className="flex flex-col gap-1.5 mb-5 last:mb-0">
-      <div className="flex justify-between items-center text-[13px] font-medium font-dm-sans">
-        <span className="text-[var(--fg2)]">{name}</span>
-        <span className="text-[var(--accent)]">{percentage}%</span>
-      </div>
-      <div className="relative w-full h-[3px] bg-[var(--bg3)] rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${percentage}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.4, delay, ease: "easeOut" }}
-          className="absolute top-0 left-0 h-full bg-gradient-to-r from-[var(--accent2)] to-[var(--accent)]"
-        />
-      </div>
-    </div>
-  );
-}
-
-/** ============================================
- *  ABOUT SECTION COMPONENT
- *  ============================================ */
 export default function About() {
+  const [activeTab, setActiveTab] = useState<"expertise" | "milestones">("expertise");
+
   const personalityTags = [
-    "AI Developer", "3D Graphics Enthusiast", "Hackathon Finalist",
-    "Problem Solver", "Clean Code Advocate", "Team Player"
+    "AI Engineer", "Agentic Systems", "3D Graphics",
+    "Hackathon Finalist", "Clean Code Advocate", "UAV & Embedded Systems"
   ];
 
-  const skills = [
-    { name: "Python / AI & ML", percentage: 95 },
-    { name: "React / Next.js", percentage: 92 },
-    { name: "TypeScript / JavaScript", percentage: 90 },
-    { name: "Node.js / Express", percentage: 88 },
-    { name: "MongoDB / Supabase", percentage: 85 },
-    { name: "Three.js / WebGL", percentage: 80 }
+  const skillCategories = [
+    {
+      title: "AI & Agentic Systems",
+      icon: <Brain className="w-5 h-5 text-[var(--accent)]" />,
+      description: "Developing intelligent agents, RAG pipelines, and reasoning graphs.",
+      skills: ["RAG", "LangChain", "LangGraph", "VectorDB", "Mem0", "MCP", "Gen AI", "Agentic AI"]
+    },
+    {
+      title: "Frontend & 3D Web",
+      icon: <Code2 className="w-5 h-5 text-[var(--accent)]" />,
+      description: "Crafting immersive, high-performance, and motion-heavy user interfaces.",
+      skills: ["React.js", "Next.js", "Three.js", "HTML", "Tailwind CSS", "GSAP"]
+    },
+    {
+      title: "Backend & Databases",
+      icon: <Database className="w-5 h-5 text-[var(--accent)]" />,
+      description: "Designing scalable servers and robust, optimized databases.",
+      skills: ["Node.js", "Express.js", "MongoDB", "PostgreSQL", "WebSockets"]
+    },
+    {
+      title: "Languages & Tools",
+      icon: <Terminal className="w-5 h-5 text-[var(--accent)]" />,
+      description: "Writing clean, compiled code and managing containerized devops pipelines.",
+      skills: ["Python", "TypeScript", "JavaScript", "C/C++", "Java", "Docker", "Git", "Supabase"]
+    }
   ];
 
-  const microStats = [
-    { value: "Top 5", label: "Hackathon Finalist" },
-    { value: "Lead", label: "Team Leadership" },
-    { value: "Collab", label: "Team Collaboration" },
-    { value: "AI + Web", label: "Core Specialization" }
+  const milestones = [
+    {
+      type: "work",
+      title: "Artificial Intelligence Intern",
+      organization: "Codlens Innovations",
+      date: "05/2026 — 06/2026",
+      location: "Surat, India",
+      role: "FitLook — AI Virtual Trial Room (Lead Developer)",
+      description: "Architected an end-to-end AI virtual trial room for tailors/fabrics. Integrated multi-image diffusion models, photo pipeline, and GSAP-driven scroll 3D effects.",
+      badge: "Internship"
+    },
+    {
+      type: "hackathon",
+      title: "Codeversity National Hackathon",
+      organization: "IIT Gandhinagar",
+      date: "2026",
+      location: "Gandhinagar, India",
+      role: "Smart Kisan App (Team Coffee&&Commit)",
+      description: "Ranked Top 5 Finalist. Built an AI decision-support web platform providing farmers real-time risk assessment, crop analysis, and LLM chat interfaces.",
+      badge: "Top 5"
+    },
+    {
+      type: "education",
+      title: "B.Tech in Computer Engineering",
+      organization: "Uka Tarsadia University",
+      date: "2023 — Present",
+      location: "Bardoli, India",
+      role: "CGPA: 8.83/10",
+      description: "Studying core computer science curriculum, focusing on artificial intelligence, database architecture, and full-stack software systems.",
+      badge: "Academic"
+    },
+    {
+      type: "training",
+      title: "UAV Mechanics & Autonomous Navigation",
+      organization: "SVNIT, Surat",
+      date: "2024",
+      location: "Surat, India",
+      role: "Hands-on Drone Tech Training",
+      description: "Mastered UAV flight controller calibration, embedded systems mechanics, and autonomous path navigation algorithms.",
+      badge: "Specialization"
+    }
   ];
 
   return (
@@ -58,53 +88,14 @@ export default function About() {
       id="about"
       className="relative bg-[var(--bg)] py-[100px] overflow-hidden"
     >
-      <div className="max-w-[1200px] mx-auto px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+      {/* Background Accent Gradients */}
+      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[rgba(var(--accent-rgb),0.02)] blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[rgba(var(--accent-rgb),0.01)] blur-[150px] pointer-events-none -z-10" />
 
-          {/* Card Side */}
-          <ScrollReveal direction="right" className="order-first lg:order-last w-full">
-            <div className="space-y-10">
-              {/* Skill Proficiency Card */}
-              <div className="relative bg-[var(--bg2)] border border-[var(--border)] rounded-[20px] p-8 overflow-hidden shadow-2xl">
-                <div
-                  className="absolute top-0 left-5 right-5 h-[2px]"
-                  style={{ background: "linear-gradient(90deg, transparent, var(--accent), transparent)" }}
-                />
-                <h3 className="text-[16px] font-bold font-syne text-[var(--fg)] mb-6">
-                  Tech Stack Proficiency
-                </h3>
-                <div className="space-y-4">
-                  {skills.map((skill, idx) => (
-                    <SkillBar
-                      key={idx}
-                      name={skill.name}
-                      percentage={skill.percentage}
-                      delay={0.2 + (idx * 0.1)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Micro Stats Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                {microStats.map((stat, idx) => (
-                  <div
-                    key={idx}
-                    className="flex flex-col justify-center items-center min-h-[120px] bg-[var(--bg3)]/50 backdrop-blur-sm border border-[var(--border)] rounded-[16px] p-4 text-center group hover:border-[var(--accent)]/30 hover:shadow-[0_10px_30px_rgba(0,0,0,0.2),0_0_20px_rgba(212,245,122,0.01)] transition-all duration-300 hover:-translate-y-1"
-                  >
-                    <div className="text-[20px] font-extrabold font-syne text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors duration-300">
-                      {stat.value}
-                    </div>
-                    <div className="text-[10px] md:text-[11px] font-bold font-mono text-[var(--fg3)] uppercase tracking-[0.08em] mt-2 leading-tight max-w-[95%]">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Content Side */}
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-20 items-start">
+          
+          {/* 1. Left Column: Introduction & Copy */}
           <div className="flex flex-col">
             <ScrollReveal direction="left">
               <div className="flex items-center gap-3 mb-6">
@@ -114,22 +105,22 @@ export default function About() {
                 </span>
               </div>
               <h2 className="text-[clamp(28px,3.5vw,46px)] font-extrabold font-syne text-[var(--fg)] leading-[1.1] tracking-[-1px] mb-6">
-                Building things people love on the web.
+                Engineering intelligent products that connect AI with human interaction.
               </h2>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2}>
-              <div className="space-y-5 mb-8">
-                <p className="text-[15px] text-[var(--fg2)] leading-[1.8] font-dm-sans">
-                  I&apos;m a B.Tech Computer Engineering student and AI Engineer specializing in building intelligent, high-performance web solutions. My expertise spans across frontend technologies like React, Next.js, and Three.js, and backends powered by Node.js, Express, and Python FastAPI.
+              <div className="space-y-6 mb-8 text-[15px] text-[var(--fg2)] leading-[1.8] font-dm-sans">
+                <p>
+                  I'm a B.Tech Computer Engineering student and AI Engineer focused on building intelligent web systems that connect complex AI logic with premium user experiences. I specialize in developing autonomous agents, RAG systems, and interactive 3D interfaces.
                 </p>
-                <p className="text-[15px] text-[var(--fg2)] leading-[1.8] font-dm-sans">
-                  I have a strong passion for Artificial Intelligence and Machine Learning, integrating Generative AI, Image-to-Image models, and the Model Context Protocol (MCP) into web applications. Whether engineering immersive 3D science simulations or building crop-analysis tools for hackathons, I love translating complex algorithms into seamless user interfaces.
+                <p>
+                  From architecting an AI-powered virtual try-on product during my internship at Codlens Innovations to building crop risk assessment platforms for national hackathons, I love translating advanced algorithms into fast, responsive, and intuitive products.
                 </p>
               </div>
             </ScrollReveal>
 
-            <ScrollReveal direction="up" delay={0.4}>
+            <ScrollReveal direction="up" delay={0.3}>
               <div className="flex flex-wrap gap-2.5 mb-10">
                 {personalityTags.map((tag, idx) => (
                   <div
@@ -150,11 +141,142 @@ export default function About() {
                 aria-label="Download my resume"
               >
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                <span className="relative">
-                  Download Resume
+                <span className="relative font-syne uppercase tracking-wider text-xs font-semibold">
+                  Download Resume PDF
                   <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
                 </span>
               </a>
+            </ScrollReveal>
+          </div>
+
+          {/* 2. Right Column: Stateful Dashboard */}
+          <div className="w-full">
+            <ScrollReveal direction="right" delay={0.1}>
+              {/* Tab Selector Headers */}
+              <div className="flex gap-8 mb-8 border-b border-[var(--border)] pb-3 relative">
+                <button
+                  onClick={() => setActiveTab("expertise")}
+                  className={`relative pb-3 text-[13px] font-bold font-syne uppercase tracking-wider transition-colors duration-300 ${
+                    activeTab === "expertise" ? "text-[var(--fg)]" : "text-[var(--fg3)] hover:text-[var(--fg2)]"
+                  }`}
+                >
+                  Expertise
+                  {activeTab === "expertise" && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      className="absolute bottom-[-1.5px] left-0 right-0 h-[2px] bg-[var(--accent)]"
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                    />
+                  )}
+                </button>
+                
+                <button
+                  onClick={() => setActiveTab("milestones")}
+                  className={`relative pb-3 text-[13px] font-bold font-syne uppercase tracking-wider transition-colors duration-300 ${
+                    activeTab === "milestones" ? "text-[var(--fg)]" : "text-[var(--fg3)] hover:text-[var(--fg2)]"
+                  }`}
+                >
+                  Milestones
+                  {activeTab === "milestones" && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      className="absolute bottom-[-1.5px] left-0 right-0 h-[2px] bg-[var(--accent)]"
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                    />
+                  )}
+                </button>
+              </div>
+
+              {/* Tab Contents */}
+              <div className="min-h-[420px]">
+                <AnimatePresence mode="wait">
+                  {activeTab === "expertise" ? (
+                    <motion.div
+                      key="expertise"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="grid grid-cols-1 md:grid-cols-2 gap-5"
+                    >
+                      {skillCategories.map((cat, idx) => (
+                        <div
+                          key={idx}
+                          className="relative bg-[var(--bg2)] border border-[var(--border)] rounded-[16px] p-6 
+                                     hover:border-[rgba(var(--accent-rgb),0.2)] transition-all duration-300 
+                                     hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)] group hover:-translate-y-1"
+                        >
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="p-2 bg-[var(--bg3)] rounded-lg group-hover:bg-[rgba(var(--accent-rgb),0.1)] transition-colors duration-300">
+                              {cat.icon}
+                            </div>
+                            <h3 className="text-[15px] font-bold font-syne text-[var(--fg)]">
+                              {cat.title}
+                            </h3>
+                          </div>
+                          <p className="text-[12px] text-[var(--fg2)] leading-relaxed mb-4">
+                            {cat.description}
+                          </p>
+                          <div className="flex flex-wrap gap-1.5">
+                            {cat.skills.map((skill, sIdx) => (
+                              <span
+                                key={sIdx}
+                                className="px-2.5 py-1 bg-white/[0.02] border border-white/[0.05] text-[11px] font-semibold rounded-md text-[var(--fg2)] font-dm-sans transition-all duration-300 hover:text-[var(--fg)] hover:border-white/25 hover:bg-white/[0.08]"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="milestones"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="relative border-l border-[var(--border2)] ml-4 pl-8 space-y-8"
+                    >
+                      {milestones.map((milestone, idx) => (
+                        <div key={idx} className="relative group">
+                          {/* Timeline Dot Indicator */}
+                          <div className="absolute left-[-41px] top-1.5 w-[18px] h-[18px] rounded-full bg-[var(--bg)] border-2 border-[var(--border2)] group-hover:border-[var(--accent)] transition-colors duration-300 flex items-center justify-center">
+                            <div className="w-[6px] h-[6px] rounded-full bg-[var(--border2)] group-hover:bg-[var(--accent)] transition-colors duration-300" />
+                          </div>
+
+                          {/* Content Card */}
+                          <div className="bg-[var(--bg2)] border border-[var(--border)] rounded-[16px] p-6 hover:border-[rgba(var(--accent-rgb),0.15)] transition-all duration-300 hover:shadow-[0_8px_25px_rgba(0,0,0,0.1)]">
+                            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                              <span className="text-[11px] font-semibold font-dm-sans text-[var(--accent)] uppercase tracking-wider bg-[rgba(var(--accent-rgb),0.06)] px-2.5 py-1 rounded border border-[rgba(var(--accent-rgb),0.15)]">
+                                {milestone.badge}
+                              </span>
+                              <span className="text-[11px] text-[var(--fg3)] font-medium">
+                                {milestone.date}
+                              </span>
+                            </div>
+
+                            <h3 className="text-[15px] font-bold font-syne text-[var(--fg)] mb-0.5">
+                              {milestone.title}
+                            </h3>
+
+                            <div className="text-[12px] text-[var(--fg2)] font-medium mb-3 flex items-center gap-1.5">
+                              <span className="text-[var(--fg)]">{milestone.organization}</span>
+                              <span className="text-[var(--fg3)]">•</span>
+                              <span className="italic">{milestone.role}</span>
+                            </div>
+
+                            <p className="text-[12px] text-[var(--fg2)] leading-relaxed">
+                              {milestone.description}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </ScrollReveal>
           </div>
 
