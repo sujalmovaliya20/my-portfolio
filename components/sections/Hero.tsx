@@ -12,7 +12,188 @@ const HeroBackground3D = dynamic(
   { ssr: false }
 );
 
+/** ============================================
+ *  WALKING MAN SVG COMPONENT
+ *  ============================================ */
+function WalkingMan() {
+  const strideDuration = 0.8; // Slower stride for visibility (0.8s vs 0.5s)
+  
+  return (
+    <svg width="40" height="60" viewBox="0 0 40 60" className="overflow-visible">
+      {/* Head */}
+      <motion.circle
+        cx="15"
+        cy="11"
+        r="5"
+        fill="var(--accent)"
+        className="drop-shadow-[0_0_8px_rgba(var(--accent-rgb),0.6)]"
+        animate={{ y: [0, -2, 0] }}
+        transition={{ duration: strideDuration / 2, repeat: Infinity, ease: "easeInOut" }}
+      />
+      
+      {/* Torso (Leaning slightly forward) */}
+      <motion.line
+        x1="20"
+        y1="35"
+        x2="16"
+        y2="17"
+        stroke="var(--accent)"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        className="drop-shadow-[0_0_8px_rgba(var(--accent-rgb),0.6)]"
+        animate={{ y: [0, -2, 0] }}
+        transition={{ duration: strideDuration / 2, repeat: Infinity, ease: "easeInOut" }}
+      />
 
+      {/* Left Arm */}
+      <motion.g
+        style={{ originX: "16px", originY: "20px" }}
+        animate={{ rotate: [-25, 30, -25], y: [0, -2, 0] }}
+        transition={{ 
+          rotate: { duration: strideDuration, repeat: Infinity, ease: "easeInOut" },
+          y: { duration: strideDuration / 2, repeat: Infinity, ease: "easeInOut" }
+        }}
+      >
+        <line
+          x1="16"
+          y1="20"
+          x2="9"
+          y2="31"
+          stroke="var(--accent)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+      </motion.g>
+
+      {/* Right Arm */}
+      <motion.g
+        style={{ originX: "16px", originY: "20px" }}
+        animate={{ rotate: [30, -25, 30], y: [0, -2, 0] }}
+        transition={{ 
+          rotate: { duration: strideDuration, repeat: Infinity, ease: "easeInOut" },
+          y: { duration: strideDuration / 2, repeat: Infinity, ease: "easeInOut" }
+        }}
+      >
+        <line
+          x1="16"
+          y1="20"
+          x2="23"
+          y2="31"
+          stroke="var(--accent)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+      </motion.g>
+
+      {/* Left Leg (Skeletal structure with knee bending) */}
+      <motion.g
+        style={{ originX: "20px", originY: "35px" }}
+        animate={{ rotate: [-30, 20, -30] }}
+        transition={{ duration: strideDuration, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {/* Thigh */}
+        <line
+          x1="20"
+          y1="35"
+          x2="16"
+          y2="44"
+          stroke="var(--accent)"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+        />
+        {/* Calf (Knee bends when swinging back) */}
+        <motion.line
+          x1="16"
+          y1="44"
+          x2="12"
+          y2="53"
+          stroke="var(--accent)"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          style={{ originX: "16px", originY: "44px" }}
+          animate={{ rotate: [0, 30, 0] }}
+          transition={{ duration: strideDuration, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.g>
+
+      {/* Right Leg (Skeletal structure with knee bending) */}
+      <motion.g
+        style={{ originX: "20px", originY: "35px" }}
+        animate={{ rotate: [20, -30, 20] }}
+        transition={{ duration: strideDuration, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {/* Thigh */}
+        <line
+          x1="20"
+          y1="35"
+          x2="24"
+          y2="44"
+          stroke="var(--accent)"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+        />
+        {/* Calf (Knee bends when swinging back) */}
+        <motion.line
+          x1="24"
+          y1="44"
+          x2="28"
+          y2="53"
+          stroke="var(--accent)"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          style={{ originX: "24px", originY: "44px" }}
+          animate={{ rotate: [30, 0, 30] }}
+          transition={{ duration: strideDuration, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.g>
+    </svg>
+  );
+}
+
+/** ============================================
+ *  PARTICLE BLAST EXPLOSION EFFECT
+ *  ============================================ */
+function BlastEffect() {
+  const particleCount = 28;
+  const colors = ["var(--accent)", "#ffffff", "#ffd700", "#ff6b6b", "rgba(var(--accent-rgb), 0.6)"];
+  
+  return (
+    <div className="absolute left-[30px] bottom-[30px] pointer-events-none z-30">
+      {Array.from({ length: particleCount }).map((_, i) => {
+        const angle = (i * 2 * Math.PI) / particleCount + (Math.random() - 0.5) * 0.15;
+        const velocity = 60 + Math.random() * 120;
+        const targetX = Math.cos(angle) * velocity;
+        const targetY = Math.sin(angle) * velocity;
+        const randomColor = colors[i % colors.length];
+        const size = 3 + Math.random() * 5;
+
+        return (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: size,
+              height: size,
+              background: randomColor,
+              boxShadow: `0 0 12px ${randomColor}`,
+            }}
+            initial={{ x: 0, y: 0, scale: 1.2, opacity: 1 }}
+            animate={{ 
+              x: targetX, 
+              y: targetY, 
+              scale: 0, 
+              opacity: 0 
+            }}
+            transition={{ 
+              duration: 0.9, 
+              ease: [0.1, 0.8, 0.2, 1] 
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
 
 /** ============================================
  *  HERO SECTION COMPONENT
@@ -20,6 +201,30 @@ const HeroBackground3D = dynamic(
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
+  
+  const [animStage, setAnimStage] = useState<"walking" | "blast" | "revealed">("walking");
+  const [startX, setStartX] = useState(350);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setStartX(150);
+    } else {
+      setStartX(350);
+    }
+
+    const walkTimeout = setTimeout(() => {
+      setAnimStage("blast");
+    }, 3600);
+
+    const revealTimeout = setTimeout(() => {
+      setAnimStage("revealed");
+    }, 3950);
+
+    return () => {
+      clearTimeout(walkTimeout);
+      clearTimeout(revealTimeout);
+    };
+  }, []);
 
   // Parallax effects
   const gridY = useTransform(scrollY, [0, 1000], [0, 300]);
@@ -95,7 +300,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="inline-flex items-center gap-2.5 px-[18px] py-[7px] 
                        bg-[rgba(212,245,122,0.08)] border border-[rgba(212,245,122,0.2)] 
-                       rounded-full mb-6 max-w-fit"
+                       rounded-full mb-4 max-w-fit"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
@@ -105,6 +310,58 @@ export default function Hero() {
               ✦ Available for freelance & full-time work
             </span>
           </motion.div>
+
+          {/* A.2 "HELLO, I AM" ANIMATION ENGINE */}
+          <div className="relative h-[60px] md:h-[80px] w-full flex items-end mb-4 z-20 overflow-visible">
+            {animStage === "walking" && (
+              <motion.div
+                initial={{ x: startX, opacity: 0, scaleX: -1 }}
+                animate={{ x: 0, opacity: [0, 1, 1] }}
+                transition={{
+                  duration: 3.6,
+                  ease: "linear",
+                }}
+                className="absolute bottom-0"
+              >
+                <WalkingMan />
+              </motion.div>
+            )}
+
+            {animStage === "blast" && <BlastEffect />}
+
+            {(animStage === "blast" || animStage === "revealed") && (
+              <motion.div
+                initial={{ scale: 0, opacity: 0, filter: "blur(12px)" }}
+                animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
+                transition={{
+                  type: "spring",
+                  stiffness: 90,
+                  damping: 12,
+                  mass: 0.9,
+                  delay: 0.05,
+                }}
+                className="select-none origin-left"
+              >
+                <MagneticButton distance={0.35}>
+                  <motion.div
+                    className="cursor-pointer py-1.5"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    <h2 
+                      className="font-syne text-3xl md:text-5xl font-extrabold tracking-[-0.04em] leading-none"
+                      style={{ 
+                        textShadow: "0 0 35px rgba(var(--accent-rgb), 0.18)",
+                      }}
+                    >
+                      <span className="text-gradient">Hello,</span>{" "}
+                      <span className="text-[var(--fg)]">I AM</span>
+                    </h2>
+                  </motion.div>
+                </MagneticButton>
+              </motion.div>
+            )}
+          </div>
 
           {/* B. HERO NAME (Giant Display Heading) */}
           <div className="mb-6 overflow-hidden">
@@ -125,7 +382,7 @@ export default function Hero() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="text-gradient font-extrabold"
-                style={{ 
+                style={{
                   textShadow: "0 0 30px rgba(var(--accent-rgb), 0.2)",
                   filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.6))"
                 }}
